@@ -130,11 +130,11 @@ GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 
 # ajay aliases
-alias aimsup='cd ~/dev4srcm;docker-compose -f infra/docker-compose.yml up -d;cd ~/github/aims;docker-compose -f odoo/docker-compose-local2.yaml up -d;docker-compose -f django/docker-compose-local.yaml up -d;cd -'
-alias aimsdown='cd ~/dev4srcm;docker-compose -f infra/docker-compose.yml down;cd ~/github/aims;docker-compose -f odoo/docker-compose-local2.yaml down;docker-compose -f django/docker-compose-local.yaml down;cd -'
+alias aimsup='cd ~/github;docker-compose -f infra/docker-compose.yml up -d; cd ~/github/aims;docker-compose -f odoo/docker-compose-local2.yaml up -d;docker-compose -f django/docker-compose-local.yaml up -d;cd -'
+alias aimsdown='cd ~/github;docker-compose -f infra/docker-compose.yml down;cd ~/github/aims;docker-compose -f odoo/docker-compose-local2.yaml down;docker-compose -f django/docker-compose-local.yaml down;cd -'
 
 # spark
-export SPARK_HOME=/opt/spark
+export SPARK_HOME=~/programs/spark-3.1.2-bin-hadoop3.2
 export PATH=$SPARK_HOME/bin:$PATH
 # to run spark in jupyter
 export PYSPARK_DRIVER_PYTHON=jupyter
