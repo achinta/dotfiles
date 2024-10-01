@@ -46,7 +46,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -78,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl vi-mode gcloud terraform)
+plugins=(git kubectl vi-mode gcloud terraform poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,6 +132,7 @@ GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 # ajay aliases
 alias aimsup='cd ~/github;docker-compose -f infra/docker-compose.yml up -d; cd ~/github/aims;docker-compose -f odoo/docker-compose-local2.yaml up -d;docker-compose -f django/docker-compose-local.yaml up -d;cd -'
 alias aimsdown='cd ~/github;docker-compose -f infra/docker-compose.yml down;cd ~/github/aims;docker-compose -f odoo/docker-compose-local2.yaml down;docker-compose -f django/docker-compose-local.yaml down;cd -'
+alias vim=nvim
 
 # spark
 export SPARK_HOME=~/programs/spark-3.1.2-bin-hadoop3.2
@@ -140,7 +141,7 @@ export PATH=$SPARK_HOME/bin:$PATH
 export PYSPARK_DRIVER_PYTHON=jupyter
 export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
 
-export AWS_PROFILE=deepiq_aws
+export AWS_PROFILE=aims_prod
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -149,5 +150,54 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# needed for pymssql
+export LDFLAGS="-L/opt/homebrew/opt/freetds/lib -L/opt/homebrew/opt/openssl@3/lib"
+export CFLAGS="-I/opt/homebrew/opt/freetds/include"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+
 # load local secrets
 source ~/secrets/secrets.sh
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# flutter
+export PATH=$PATH:$HOME/programs/flutter/bin
+
+#rbenv
+eval "$(rbenv init - zsh)"
+export GEM_HOME=$HOME/.gem
+# export PATH=$GEM_HOME/bin:$PATH
+export PATH=$GEM_HOME/ruby/3.2.0/bin:$PATH
+
+# poetry
+export PATH="/Users/achinta/.local/bin:$PATH"
+
+# modular
+export MODULAR_HOME="$HOME/.modular"
+export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
+
+# python msql client
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/openssl/lib/"
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export PKG_CONFIG_PATH="$(brew --prefix)/opt/mysql-client/lib/pkgconfig"
+
+# enable multi threading in python - https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# use buildkit
+export DOCKER_BUILDKIT=1
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/achinta/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/achinta/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/achinta/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/achinta/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/shims:${PATH}"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
