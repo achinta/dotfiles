@@ -1,4 +1,24 @@
-### Setting up shell on a new computer
+### Setting a new computer
+#### Install iterm2 and brew
+install iterm2 from https://iterm2.com/ 
+install brew from https://brew.sh/
+
+#### Use brew to install packages
+```sh
+brew install zsh
+brew install --cask sublime-text
+brew install --cask google-chrome
+brew install --cask brave-browser
+brew install --cask visual-studio-code
+brew install --cask miniforge
+
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+
+
+
 I use zsh, https://github.com/ohmyzsh/ohmyzsh and https://github.com/romkatv/powerlevel10k
 
 #### on centos
