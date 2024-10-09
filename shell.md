@@ -11,6 +11,12 @@ brew install --cask google-chrome
 brew install --cask brave-browser
 brew install --cask visual-studio-code
 brew install --cask miniforge
+brew install --cask commander-one
+brew install --cask dbeaver-community
+brew install --cask google-chrome
+
+brew install neovim
+brew install htop
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
