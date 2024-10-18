@@ -1,4 +1,4 @@
-// vs code key bindings
+// vs code key bindings - https://stackoverflow.com/questions/36328029/is-there-a-hotkey-to-switch-between-split-window-panes
 [
     {
         "key": "ctrl+h",
