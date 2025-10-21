@@ -10,9 +10,7 @@ brew install --cask sublime-text
 brew install --cask google-chrome
 brew install --cask brave-browser
 brew install --cask visual-studio-code
-brew install --cask miniforge
 brew install --cask commander-one
-brew install --cask dbeaver-community
 brew install --cask google-chrome
 
 brew install neovim
