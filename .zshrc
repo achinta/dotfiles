@@ -201,3 +201,22 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PYENV_ROOT/shims:${PATH}"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Load env variables from .env file. Loads from .env file from in current folder by default
+loadenv() {
+  local envfile="${1:-.env}"
+  if [[ ! -f "$envfile" ]]; then
+    return 0
+  fi
+  while IFS= read -r line || [[ -n $line ]]; do
+    [[ $line =~ ^[[:space:]]*#.*$ ]] && continue
+    [[ -z $line ]] && continue
+    # Trim leading/trailing whitespace
+    line="${line#"${line%%[![:space:]]*}"}"
+    line="${line%"${line##*[![:space:]]}"}"
+    [[ -z $line ]] && continue
+    # Basic export, assuming KEY=VALUE format without spaces around =
+    export $line
+  done < "$envfile"
+  echo "Environment variables from $envfile have been successfully exported."
+}
