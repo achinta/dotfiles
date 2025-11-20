@@ -220,3 +220,8 @@ loadenv() {
   done < "$envfile"
   echo "Environment variables from $envfile have been successfully exported."
 }
+
+# kill process running on port
+alias pkill='f() { pid=$(lsof -ti :$1); if [ -n "$pid" ]; then kill -9 $pid && echo "Killed process $pid on port $1"; else echo "No process found on port $1"; fi; }; f'
+#show process running on port
+alias pshow='f() { pids=$(lsof -ti :$1); if [ -n "$pids" ]; then echo "Processes on port $1:"; echo "PID    PPID   %CPU  %MEM  COMMAND"; for pid in $pids; do ps -p $pid -o "pid,ppid,%cpu,%mem,command" | tail -n 1; done; else echo "No process found on port $1"; fi; }; f'
